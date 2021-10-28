@@ -1,6 +1,6 @@
 #!/bin/bash
 file=/home/user/phone/full
-date=2021-20-27
+date=2021-10-27
 
 rm mts_phone
 rm tele2_phone
