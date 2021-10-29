@@ -6,7 +6,7 @@ cat $file | grep DIAL_TRUNK=20 | cut -c 102- | cut -c -8 > trunk_mts
 cat $file | grep DIAL_TRUNK=21 | cut -c 102- | cut -c -8 >> trunk_mts
 cat $file | grep DIAL_TRUNK=19 | cut -c 102- | cut -c -8 > trunk_tele2
 
-asterisk_trunk_mobile(){
+asterisk_report_mobile(){
 rm $2
 mapfile -t ARR < $1
 for i in "${ARR[@]}";
@@ -25,8 +25,8 @@ mapfile -t ARR_SORT < $2
 printf "%s\n" "${ARR_SORT[@]}" | wc -l > $3
 }
 
-asterisk_trunk_mobile "trunk_mts" "mts_phone" "mts_count"
-asterisk_trunk_mobile "trunk_tele2" "tele2_phone" "tele2_count"
+asterisk_report_mobile "trunk_mts" "mts_phone" "mts_count"
+asterisk_report_mobile "trunk_tele2" "tele2_phone" "tele2_count"
 
 # $1 - trunks_file - id calls   / mapfile -t MTS < trunk_mts
 # $2 - lists phone              / rm mts_phone
