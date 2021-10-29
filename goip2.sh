@@ -28,8 +28,8 @@ printf "%s\n" "${ARR_SORT[@]}" | wc -l > $3
 asterisk_trunk_mobile "trunk_mts" "mts_phone" "mts_count"
 asterisk_trunk_mobile "trunk_tele2" "tele2_phone" "tele2_count"
 
-# $1 - trunks_file - id calls  / mapfile -t MTS < trunk_mts
-# $2 - lists phone  / rm mts_phone
-#                   / echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
-#                   / mapfile -t MTS_SORT < mts_phone
-# $3 - phone count  / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_count 
+# $1 - trunks_file - id calls   / mapfile -t MTS < trunk_mts
+# $2 - lists phone              / rm mts_phone
+#                               / echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
+#                               / mapfile -t MTS_SORT < mts_phone
+# $3 - phone count              / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_count 
