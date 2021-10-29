@@ -1,6 +1,6 @@
 #!/bin/bash
 file=/home/user/phone/full
-date=2021-10-27
+# date=2021-10-27
 
 cat $file | grep DIAL_TRUNK=20 | cut -c 102- | cut -c -8 > trunk_mts
 cat $file | grep DIAL_TRUNK=21 | cut -c 102- | cut -c -8 >> trunk_mts
