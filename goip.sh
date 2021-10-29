@@ -17,8 +17,11 @@ do
     a=$(grep answer $file | grep "$i" | sed 's/  //g')
     if [ "$a" > 1 ]; then
         start=$a;
-        finish=$(grep 'outbound-allroutes-custom-all, 989' $file | grep "$i" | awk '{print $1, $2}');
-        echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
+        b=$(grep 'outbound-allroutes-custom-all, 989' $file | grep "$i" | awk '{print $1, $2}' | sed 's/  //g');
+            if [ "$b" > 1 ]; then
+                finish=$b;
+                echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
+            fi
     fi
 done
 
@@ -31,14 +34,16 @@ echo "TELE2"
 mapfile -t TELE2 < trunk_tele2
 for i in "${TELE2[@]}";
 do
-    a=$(cat $file | grep answer | grep "$i" | sed 's/  //g')
+    a=$(grep answer $file | grep "$i" | sed 's/  //g')
     if [ "$a" > 1 ]; then
         start=$a;
-        finish=$(cat $file | grep 'outbound-allroutes-custom-all, 989' | grep "$i" | awk '{print $1, $2}');
-        echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> tele2_phone;
+        b=$(grep 'outbound-allroutes-custom-all, 989' $file | grep "$i" | awk '{print $1, $2}' | sed 's/  //g');
+            if [ "$b" > 1 ]; then
+                finish=$b;
+                echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> tele2_phone;
+            fi
     fi
 done
 
 mapfile -t TELE2_SORT < tele2_phone
 printf "%s\n" "${TELE2_SORT[@]}" | wc -l > tele2_count
-
