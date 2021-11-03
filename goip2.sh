@@ -8,7 +8,8 @@ cat $file | grep DIAL_TRUNK=21 | cut -c 102- | cut -c -8 >> $patch/trunk_mts
 cat $file | grep DIAL_TRUNK=19 | cut -c 102- | cut -c -8 > $patch/trunk_tele2
 
 asterisk_report_mobile(){
-rm $patch/$2
+#rm $patch/$2
+mv $patch/$2 $patch/$date$2
 mapfile -t ARR < $patch/$1
 for i in "${ARR[@]}";
 do
@@ -34,4 +35,4 @@ asterisk_report_mobile "trunk_tele2" "tele2_phone" "tele2_count"
 # $2 - lists phone  / rm mts_phone
 #                   / echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
 #                   / mapfile -t MTS_SORT < mts_phone
-# $3 - phone count  / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_count
+# $3 - phone count  / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_countroot@user-VirtualBox:/home/user/phone/time1/
