@@ -35,4 +35,4 @@ asterisk_report_mobile "trunk_tele2" "tele2_phone" "tele2_count"
 # $2 - lists phone  / rm mts_phone
 #                   / echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> mts_phone;
 #                   / mapfile -t MTS_SORT < mts_phone
-# $3 - phone count  / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_countroot@user-VirtualBox:/home/user/phone/time1/
+# $3 - phone count  / printf "%s\n" "${MTS_SORT[@]}" | wc -l > mts_count
