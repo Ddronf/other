@@ -1,16 +1,16 @@
 #!/bin/bash
 file=/home/user/phone/time1/full        # LOG
-patch=/home/user/phone/time1/22         # Files for Zabbix
+pathf=/home/user/phone/time1/22         # Files for Zabbix
 date=$(date -I)
 
-cat $file | grep DIAL_TRUNK=20 | cut -c 102- | cut -c -8 > $patch/trunk_mts
-cat $file | grep DIAL_TRUNK=21 | cut -c 102- | cut -c -8 >> $patch/trunk_mts
-cat $file | grep DIAL_TRUNK=19 | cut -c 102- | cut -c -8 > $patch/trunk_tele2
+cat $file | grep DIAL_TRUNK=20 | cut -c 102- | cut -c -8 > $pathf/trunk_mts
+cat $file | grep DIAL_TRUNK=21 | cut -c 102- | cut -c -8 >> $pathf/trunk_mts
+cat $file | grep DIAL_TRUNK=19 | cut -c 102- | cut -c -8 > $pathf/trunk_tele2
 
 asterisk_report_mobile(){
-#rm $patch/$2
-mv $patch/$2 $patch/$date$2
-mapfile -t ARR < $patch/$1
+#rm $pathf/$2
+mv $pathf/$2 $pathf/$date$2
+mapfile -t ARR < $pathf/$1
 for i in "${ARR[@]}";
 do
     a=$(grep answer $file | grep "$i" | grep "$date" | sed 's/  //g')
@@ -19,13 +19,13 @@ do
         b=$(grep 'outbound-allroutes-custom-all, 989' $file | grep "$i" | awk '{print $1, $2}' | sed 's/  //g');
             if [ "$b" > 1 ]; then
                 finish=$b;
-                echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> $patch/$2;
+                echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> $pathf/$2;
             fi
     fi
 done
-mapfile -t ARR_SORT < $patch/$2
+mapfile -t ARR_SORT < $pathf/$2
 #printf "%s\n" "${ARR_SORT[@]}" | wc -l > $3
-echo ${#ARR_SORT[@]} > $patch/$3
+echo ${#ARR_SORT[@]} > $pathf/$3
 }
 
 asterisk_report_mobile "trunk_mts" "mts_phone" "mts_count"
