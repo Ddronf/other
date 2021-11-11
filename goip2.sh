@@ -14,10 +14,10 @@ mapfile -t ARR < $pathf/$1
 for i in "${ARR[@]}";
 do
     a=$(grep answer $file | grep "$i" | grep "$date" | sed 's/  //g')
-    if [ "$a" > 1 ]; then
+    if [[ "$a" ]]; then
         start=$a;
         b=$(grep 'outbound-allroutes-custom-all, 989' $file | grep "$i" | awk '{print $1, $2}' | sed 's/  //g');
-            if [ "$b" > 1 ]; then
+            if [[ "$b" ]]; then
                 finish=$b;
                 echo "Start - "${start:1:19}", Finish - "${finish:1:19} >> $pathf/$2;
             fi
